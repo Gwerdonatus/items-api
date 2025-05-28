@@ -4,6 +4,8 @@ Django==5.2.1
 django-filter==25.1
 djangorestframework==3.16.0
 drf-spectacular==0.28.0
+dj-database-url>=1.0
+python-dotenv>=0.21
 inflection==0.5.1
 jsonschema==4.24.0
 jsonschema-specifications==2025.4.1
@@ -14,3 +16,4 @@ sqlparse==0.5.3
 typing_extensions==4.13.2
 tzdata==2025.2
 uritemplate==4.1.1
+whitenoise>=6.5.0
