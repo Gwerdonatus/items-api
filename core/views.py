@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Item
 from .serializers import ItemSerializer
+from django.shortcuts import render
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all().order_by('-created')
@@ -15,3 +16,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         'price': ['gte', 'lte', 'exact'],
         'name': ['icontains'],
     }
+
+def home(request):
+     from django.utils import timezone
+     return render(request, "core/homepage.html", {"now": timezone.now()})

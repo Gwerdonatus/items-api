@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
 
-    # Your apps
+    # apps
     'core',
 ]
 
@@ -49,7 +49,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # add custom template dirs here if needed
+        'DIRS': ['templates'],  # add custom template dirs here if needed
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

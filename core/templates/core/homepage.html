@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <title>Items API • Home</title>
+
+  <!-- === SEO & Open Graph Meta Tags === -->
+  <meta name="description" content="Gwer Msughter Donatus • Full-Stack Django Developer. Explore my Items API, live tutorials, code snippets, and portfolio." />
+  <meta property="og:title" content="Gwer Msughter Donatus – Items API & Portfolio" />
+  <meta property="og:description" content="A production-ready Django REST API with interactive demos, tutorials, and documentation." />
+  <meta property="og:image" content="https://items-api-6voy.onrender.com/static/images/og-image.png" />
+  <meta property="og:url" content="https://items-api-6voy.onrender.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- === Google Font: Inter === -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoYoGrM35IArm5HAIgycArHl5PvH+8abtTE1Pi6jizoU5yM"
+    crossorigin="anonymous"
+  />
+
+  <!-- Bootstrap Icons (for icons in various sections) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <!-- Prism.js for syntax highlighting -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- ===== Custom CSS ===== -->
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== HEADER (two-row) ========== */
+    header.site-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header.site-header .container {
+      padding: 1rem 1rem 0.25rem 1rem;
+    }
+    header.site-header h1.site-title {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #007bff;
+    }
+    header.site-header h1.site-title:hover {
+      color: #0056b3;
+    }
+
+    /* Category-style nav under the title */
+    nav.category-nav {
+      background-color: #ffffff;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    nav.category-nav .container {
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+    }
+    nav.category-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    nav.category-nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      transition: color 0.2s ease;
+    }
+    nav.category-nav a:hover {
+      color: #007bff;
+    }
+    @media (max-width: 576px) {
+      nav.category-nav ul {
+        gap: 1rem;
+      }
+      header.site-header h1.site-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.4)
+        ),
+        url("https://images.unsplash.com/photo-1581093588401-3436c8b7a5ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80")
+          center/cover no-repeat;
+      color: #fff;
+      padding: 4rem 1rem;
+      text-align: center;
+      margin-top: 0;
+    }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+    .btn-hero {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+    }
+    .btn-hero:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    /* ========== “What Is an API?” SECTION ========== */
+    .about-api {
+      padding: 4rem 1rem;
+      background-color: #f8f9fa;
+    }
+    .about-api .card {
+      max-width: 800px;
+      margin: 0 auto;
+      border: none;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    .about-api .card-header {
+      background-color: #ffffff;
+      padding: 2rem 2rem 1rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .about-api .card-header .icon-wrapper {
+      font-size: 2.5rem;
+      color: #0d6efd;
+      margin-bottom: 0.5rem;
+    }
+    .about-api .card-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #212529;
+    }
+    .about-api .card-header .underline {
+      width: 60px;
+      height: 4px;
+      background-color: #0d6efd;
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+    .about-api .card-header p {
+      font-size: 1rem;
+      color: #495057;
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+    .about-api .card-body {
+      background-color: #ffffff;
+      padding: 2rem;
+    }
+    .about-api .card-body p {
+      font-size: 1rem;
+      color: #495057;
+      margin-bottom: 1.5rem;
+    }
+    .about-api .list-group-item {
+      font-size: 1rem;
+      color: #343a40;
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .about-api .list-group-item .bi {
+      font-size: 1.25rem;
+      color: #0d6efd;
+      margin-right: 0.75rem;
+      vertical-align: middle;
+    }
+    .about-api .ul-container {
+      margin-bottom: 1.5rem;
+    }
+    .about-api .card-footer {
+      background-color: #f1f3f5;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    .about-api .card-footer a {
+      font-weight: 500;
+      color: #0d6efd;
+      text-decoration: none;
+    }
+    .about-api .card-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== ENDPOINTS CARDS GRID ========== */
+    .api-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 0.5rem;
+      border: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .api-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .api-card .card-body {
+      padding: 1.5rem;
+    }
+    .api-card .card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .api-card .card-text {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* ========== SECTION 4: CODE SNIPPET / LIVE API TESTER ========== */
+    #snippet {
+      padding: 3rem 1rem;
+      background-color: #ffffff;
+    }
+    #snippet h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+      text-align: center;
+    }
+    #snippet p {
+      font-size: 1rem;
+      color: #555;
+    }
+    #snippet .input-group {
+      max-width: 500px;
+      margin: 1rem auto;
+    }
+    #snippet .input-group input {
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+    #snippet .input-group button {
+      border-radius: 0 0.5rem 0.5rem 0;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+    }
+    #snippet .input-group button:hover {
+      background-color: #218838;
+    }
+    #snippet pre {
+      background-color: #f7f9fc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      overflow-x: auto;
+      max-height: 200px;
+    }
+    #snippet code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #2d2d2d;
+    }
+    #snippet-output {
+      margin-top: 1rem;
+      background-color: #f7f9fc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #snippet-output pre {
+      margin: 0;
+      border: none;
+      background-color: transparent;
+    }
+
+    /* ========== CALL-TO-ACTION BANNER ========== */
+    #cta {
+      padding: 3rem 1rem;
+      background-color: #007bff;
+      color: #ffffff;
+      text-align: center;
+    }
+    #cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    #cta p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    #cta a.btn-light {
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      color: #007bff;
+    }
+    #cta a.btn-light:hover {
+      background-color: #e2e6ea;
+    }
+
+    /* ========== VIDEO TUTORIAL SECTION ========== */
+    .video-section {
+      padding: 3rem 1rem;
+      text-align: center;
+      background-color: #f7f9fc;
+    }
+    .video-section h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0.5rem;
+    }
+
+    /* ========== LIVE DOCS (ReDoc embed) ========== */
+    #live-docs-container {
+      padding: 3rem 1rem;
+      background-color: #ffffff;
+    }
+    #live-docs-toggle {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    #live-docs {
+      max-width: 100%;
+      height: 600px;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      display: none; /* hidden until toggled */
+    }
+
+    /* ========== ABOUT ME SECTION ========== */
+    .about-me {
+      padding: 3rem 1rem;
+      background-color: #ffffff;
+    }
+    .about-me h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+      text-align: center;
+    }
+    .about-me .profile-card {
+      max-width: 800px;
+      margin: 0 auto;
+      border: none;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: #fdfdfd;
+    }
+    .about-me .profile-card .card-body {
+      padding: 2rem;
+    }
+    .about-me .profile-card .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+    .about-me .profile-card .card-text {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .about-me .profile-links a {
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 2rem 1rem;
+      background-color: #fff;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+    }
+    footer small {
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <!-- ================================= HEADER ================================= -->
+  <header class="site-header">
+    <div class="container">
+      <!-- First row: “Items API” -->
+      <a href="/" class="d-inline-block">
+        <h1 class="site-title">Items API</h1>
+      </a>
+      <!-- Second row: category-style nav -->
+      <nav class="category-nav">
+        <ul>
+          <li><a href="#about-me">About Me</a></li>
+          <li><a href="#endpoints">Endpoints</a></li>
+          <li><a href="#snippet">Code Snippet</a></li>
+          <li><a href="#cta">Hire Me</a></li>
+          <li><a href="#video">Tutorial Video</a></li>
+          <li><a href="#live-docs-container">Live Docs</a></li>
+          <li><a href="/api/schema/">Schema</a></li>
+          <li><a href="/api/docs/">Docs</a></li>
+          <li>
+            <a href="https://github.com/Gwerdonatus" target="_blank" rel="noopener">
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- ======================================================================== -->
+
+  <!-- ================================= HERO ================================= -->
+  <section class="hero d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center">
+      <h1>Welcome to the Items API</h1>
+      <p class="lead">
+        A fully deployed, documented, and ready-to-use RESTful API for managing
+        “Items.” Explore endpoints below, run live code snippets, or watch our quick tutorial.
+      </p>
+      <a
+        class="btn btn-primary btn-hero"
+        href="#endpoints"
+        role="button"
+        >Explore Endpoints</a
+      >
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- ===================== “What Is an API?” SECTION ===================== -->
+  <section id="about" class="about-api">
+    <div class="container">
+      <div class="card">
+        <!-- Card Header -->
+        <div class="card-header">
+          <div class="icon-wrapper">
+            <i class="bi bi-broadcast"></i>
+          </div>
+          <h2>What Is an API?</h2>
+          <div class="underline"></div>
+          <p class="mt-3 mb-0">
+            An <strong>API</strong> (Application Programming Interface) is a set of
+            rules that enables two software applications to communicate via HTTP.
+            A <em>RESTful</em> API supports <em>Create, Read, Update, and Delete</em>
+            operations on server data from anywhere on the web.
+          </p>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <p>
+            Our Items API exposes endpoints to manage a collection of “items.” Here’s what you can do:
+          </p>
+          <div class="ul-container">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="bi bi-box-seam"></i>
+                <strong>GET</strong> a list of all items or fetch a single item by ID.
+              </li>
+              <li class="list-group-item">
+                <i class="bi bi-plus-circle"></i>
+                <strong>POST</strong> a new item by sending a JSON payload.
+              </li>
+              <li class="list-group-item">
+                <i class="bi bi-pencil-square"></i>
+                <strong>PUT/PATCH</strong> an existing item using JSON.
+              </li>
+              <li class="list-group-item">
+                <i class="bi bi-trash3-fill"></i>
+                <strong>DELETE</strong> an item you no longer need.
+              </li>
+            </ul>
+          </div>
+          <p>
+            Scroll down to see quick-access cards linking directly to each endpoint.
+            If you’re new to APIs, watch the tutorial video above, then try it out in Swagger below.
+          </p>
+        </div>
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <a href="#endpoints">Jump to Endpoints →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =================================================================== -->
+
+  <!-- ======================= ENDPOINTS CARDS GRID ======================= -->
+  <section id="endpoints" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Endpoints at a Glance</h2>
+      <div class="row g-4">
+        <!-- GET /api/items/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">📦 List All Items</h5>
+              <p class="card-text">
+                <code>GET /api/items/</code><br />
+                Returns an array of all items in JSON format.
+              </p>
+              <a
+                href="/api/items/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >Try it now →</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- GET /api/items/{id}/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">🔍 Retrieve Single Item</h5>
+              <p class="card-text">
+                <code>GET /api/items/{id}/</code><br />
+                Replace <code>{id}</code> with the item’s unique ID to fetch it.
+              </p>
+              <a
+                href="/api/items/1/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >Try with ID=1 →</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- POST /api/items/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">➕ Create New Item</h5>
+              <p class="card-text">
+                <code>POST /api/items/</code><br />
+                Submit a JSON body (e.g. <code>{"name":"New Item","description":"..."}</code>)
+                to add a new item.
+              </p>
+              <a
+                href="/api/items/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >Use curl or Postman →</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- PUT/PATCH /api/items/{id}/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">✏️ Update Item</h5>
+              <p class="card-text">
+                <code>PUT /api/items/{id}/</code> or <code>PATCH /api/items/{id}/</code><br />
+                Replace <code>{id}</code> with the item’s ID and send JSON to modify.
+              </p>
+              <a
+                href="/api/items/1/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >Try with ID=1 →</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- DELETE /api/items/{id}/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">🗑️ Delete Item</h5>
+              <p class="card-text">
+                <code>DELETE /api/items/{id}/</code><br />
+                Permanently remove an item by its ID.
+              </p>
+              <a
+                href="/api/items/1/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >Try with ID=1 →</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- GET /api/schema/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">📄 OpenAPI Schema</h5>
+              <p class="card-text">
+                <code>GET /api/schema/</code><br />
+                View the raw OpenAPI (Swagger) JSON/YAML schema defining all endpoints.
+              </p>
+              <a
+                href="/api/schema/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >View Schema →</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- GET /api/docs/ -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card api-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">📚 Swagger UI</h5>
+              <p class="card-text">
+                <code>GET /api/docs/</code><br />
+                Explore interactive documentation—“Try it out” on each endpoint.
+              </p>
+              <a
+                href="/api/docs/"
+                class="stretched-link text-decoration-none"
+                target="_blank"
+                >Open Swagger →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- =================== SECTION 4: CODE SNIPPET / LIVE API TESTER =================== -->
+  <section id="snippet">
+    <div class="container">
+      <h2>Quick Start (JavaScript Fetch)</h2>
+      <p class="text-center mb-4">
+        Enter an Item ID below (or leave blank to fetch all). Click “Run” to see live results.
+      </p>
+
+      <!-- Input + Button for dynamic fetch -->
+      <div class="input-group mb-3">
+        <input
+          type="number"
+          id="fetch-id"
+          class="form-control"
+          placeholder="Enter Item ID (optional)"
+          aria-label="Enter Item ID (optional)"
+        />
+        <button id="run-snippet" class="btn btn-success" type="button">
+          <i class="bi bi-play-circle me-1"></i>Run
+        </button>
+      </div>
+
+      <!-- Example snippet for manual reference -->
+      <pre><code class="language-javascript">
+// Example JS snippet:
+fetch('https://items-api-6voy.onrender.com/api/items/1/')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+      </code></pre>
+
+      <!-- Output -->
+      <div id="snippet-output" class="mt-3"><!-- JSON will appear here --></div>
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- ========== SECTION 6: CALL-TO-ACTION BANNER ========== -->
+  <section id="cta">
+    <div class="container">
+      <h2>Need a Django Developer?</h2>
+      <p>
+        I’m available for remote, freelance, and full-time roles. Let’s build
+        something great together!
+      </p>
+      <a href="#about-me" class="btn btn-light btn-lg">Contact Me</a>
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- ======================= VIDEO TUTORIAL SECTION ======================= -->
+  <section id="video" class="video-section">
+    <div class="container">
+      <h2>Watch: API Setup & Usage Tutorial</h2>
+      <p class="text-muted mb-4">
+        A quick walkthrough on how to get your own Items API up and running,
+        step by step.
+      </p>
+      <div class="video-wrapper">
+        <!-- Lazy-loaded YouTube iframe -->
+        <iframe
+          loading="lazy"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- ======================= LIVE DOCS (ReDoc) ======================= -->
+  <section id="live-docs-container">
+    <div class="container">
+      <div id="live-docs-toggle">
+        <button
+          class="btn btn-outline-primary btn-sm"
+          id="toggle-live-docs"
+          type="button"
+          aria-expanded="false"
+        >
+          <i class="bi bi-journal-text me-1"></i>Show/Hide API Docs (ReDoc)
+        </button>
+      </div>
+      <div id="live-docs"></div>
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- ======================= ABOUT ME SECTION ======================= -->
+  <section id="about-me" class="about-me">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="card profile-card mx-auto">
+        <div class="card-body">
+          <h3 class="card-title">Gwer Msughter Donatus</h3>
+          <p class="card-text">
+            Full-Stack Django Developer • REST API Specialist • Payment & Marketplace
+            Integrations. I build scalable, secure, and user-friendly web apps using
+            Python, Django, and modern frontend technologies.
+          </p>
+          <p class="card-text">
+            <strong>Skills & Technologies:</strong>
+            <ul class="mb-2">
+              <li>Django & Django REST Framework</li>
+              <li>Python, JavaScript, HTML5, CSS3, Bootstrap 5</li>
+              <li>API Design (RESTful), drf-spectacular (OpenAPI/Swagger)</li>
+              <li>Paystack & Payment Integrations</li>
+              <li>Git, GitHub, CI/CD, Deployment (Render, Netlify)</li>
+              <li>Responsive & Mobile-First Design</li>
+            </ul>
+          </p>
+          <div class="profile-links mb-3">
+            <a
+              href="mailto:donatusgwer@gmail.com"
+              class="btn btn-outline-primary btn-sm mb-1"
+              ><i class="bi bi-envelope-fill"></i> Email</a
+            >
+            <a
+              href="https://wa.me/2348116276112"
+              class="btn btn-outline-success btn-sm mb-1"
+              target="_blank"
+              ><i class="bi bi-whatsapp"></i> WhatsApp</a
+            >
+            <a
+              href="https://www.linkedin.com/in/donatus-gwer-857610338"
+              class="btn btn-outline-info btn-sm mb-1"
+              target="_blank"
+              ><i class="bi bi-linkedin"></i> LinkedIn</a
+            >
+            <a
+              href="https://github.com/Gwerdonatus"
+              class="btn btn-outline-dark btn-sm mb-1"
+              target="_blank"
+              ><i class="bi bi-github"></i> GitHub</a
+            >
+            <a
+              href="https://portfolio-uey9.onrender.com"
+              class="btn btn-outline-secondary btn-sm mb-1"
+              target="_blank"
+              ><i class="bi bi-globe2"></i> Portfolio</a
+            >
+          </div>
+          <p class="card-text mt-3">
+            <strong>Education & Certifications:</strong>
+            <ul class="mb-0">
+              <li>B.A. Philosophy, Benue State University</li>
+              <li>Courses: Python, Django, CSS, HTML, Git</li>
+            </ul>
+          </p>
+          <p class="card-text mt-3">
+            <strong>Recent Projects:</strong>
+            <ul class="mb-0">
+              <li>Naija Co-op Hub (Esusu/Marketplace/Payment features)</li>
+              <li>ThriftbyZee (Fashion e-commerce website, in progress)</li>
+              <li>Starter Python Projects on GitHub (portfolio of sample apps)</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======================================================================== -->
+
+  <!-- ================================= FOOTER ================================= -->
+  <footer>
+    <div class="container">
+      <small>
+        &copy; {% now "Y" %} Items API • Built with Django •
+        <a href="https://github.com/Gwerdonatus" target="_blank">GitHub</a> •
+        <a href="https://portfolio-uey9.onrender.com" target="_blank">Portfolio</a>
+      </small>
+    </div>
+  </footer>
+  <!-- ======================================================================== -->
+
+  <!-- Bootstrap 5 JS Bundle (Popper + Bootstrap JS) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qm4WN6mCxBpdkwYlYgXh/2dFvm/VMhxZ+0ILMTLMIxuBvoZj36DHa0H/Chp6hpNX"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Prism.js for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+  <!-- ReDoc standalone -->
+  <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
+
+  <!-- ====== Scripts ====== -->
+  <script>
+    // ====== SECTION 4: Interactive Code Snippet ======
+    document.addEventListener('DOMContentLoaded', function() {
+      const runBtn = document.getElementById('run-snippet');
+      const idInput = document.getElementById('fetch-id');
+      const outputDiv = document.getElementById('snippet-output');
+
+      runBtn.addEventListener('click', () => {
+        const idVal = idInput.value.trim();
+        // Determine URL based on ID or fetch all
+        const url = idVal
+          ? `https://items-api-6voy.onrender.com/api/items/${idVal}/`
+          : 'https://items-api-6voy.onrender.com/api/items/';
+
+        outputDiv.innerHTML = '<p><em>Loading...</em></p>';
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Status ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Pretty-print JSON with syntax highlighting
+            const pretty = JSON.stringify(data, null, 2);
+            outputDiv.innerHTML = `<pre><code class="language-json">${pretty}</code></pre>`;
+            Prism.highlightAllUnder(outputDiv);
+          })
+          .catch((error) => {
+            outputDiv.innerHTML =
+              `<p style="color: red;"><strong>Error:</strong> ${error.message}</p>`;
+            console.error('Fetch error:', error);
+          });
+      });
+    });
+
+    // ====== SECTION: Toggle ReDoc (Live Docs) ======
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('toggle-live-docs');
+      const liveDocsDiv = document.getElementById('live-docs');
+
+      // Initialize ReDoc inside live-docs div
+      Redoc.init(
+        '/api/schema/',      // URL to your OpenAPI schema
+        { scrollYOffset: 60 }, // options (offset to account for fixed header)
+        liveDocsDiv
+      );
+
+      toggleBtn.addEventListener('click', () => {
+        if (liveDocsDiv.style.display === 'none' || liveDocsDiv.style.display === '') {
+          liveDocsDiv.style.display = 'block';
+          toggleBtn.innerHTML = '<i class="bi bi-journal-text me-1"></i>Hide API Docs (ReDoc)';
+        } else {
+          liveDocsDiv.style.display = 'none';
+          toggleBtn.innerHTML = '<i class="bi bi-journal-text me-1"></i>Show API Docs (ReDoc)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
